@@ -33,6 +33,7 @@ public class SOLSpout extends BaseRichSpout {
   private String [] _messages = null;
   private boolean _ackEnabled;
   private Random _rand = null;
+  private int total_count=1000;
   public SOLSpout(int sizeInBytes, boolean ackEnabled) {
     if(sizeInBytes < 0) {
       sizeInBytes = 0;
@@ -70,8 +71,14 @@ public class SOLSpout extends BaseRichSpout {
   @Override
   public void nextTuple() {
     final String message = _messages[_rand.nextInt(_messages.length)];
+    
+    if(_messageCount==total_count){
+    	return;
+    }
+    
     if(_ackEnabled) {
       _collector.emit(new Values(message), _messageCount);
+      //System.out.println(_messageCount);
     } else {
       _collector.emit(new Values(message));
     }

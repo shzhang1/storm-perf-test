@@ -88,11 +88,11 @@ public class Main {
   private String _name = "test";
   
   @Option(name="--ackEnabled", aliases={"--ack"}, usage="enable acking")
-  private boolean _ackEnabled = false;
+  private boolean _ackEnabled = true;
   
   @Option(name="--pollFreqSec", aliases={"--pollFreq"}, metaVar="POLL",
       usage="How often should metrics be collected")
-  private int _pollFreqSec = 30;
+  private int _pollFreqSec = 1;
   
   @Option(name="--testTimeSec", aliases={"--testTime"}, metaVar="TIME",
       usage="How long should the benchmark run for.")
